@@ -29,7 +29,7 @@ public class TESTIT {
 		sobivaimOrganisatsioon.valiParimEdetabel(organisatsioonid, lisainfo);
 		
 		JOptionPane.showMessageDialog(null,
-			sobivaimOrganisatsioon.kuvaWrap(sobivaimOrganisatsioon.kuvaTop(3, "Sulle sobivad: ", ""), 100),
+			sobivaimOrganisatsioon.kuvaWrap(sobivaimOrganisatsioon.kuvaTop(3, "Sulle sobib: ", ""), 100),
 			"Tulemus",
 			JOptionPane.PLAIN_MESSAGE);
 		
