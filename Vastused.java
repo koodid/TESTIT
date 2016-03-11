@@ -5,7 +5,6 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class Vastused {
-	
 	private ArrayList<Integer> kodeeritudVastused = new ArrayList<>();
 	private ArrayList<ArrayList<Integer>> kodeeritudVastusedListidena = new ArrayList<>();
 	private ArrayList<ArrayList<String>> vastusedListidena = new ArrayList<>();
@@ -28,7 +27,6 @@ public class Vastused {
 		return vastusteList;
 	}
 
-	// vastusteList = list.getNimekiri();
 	public ArrayList<Integer> kodeeriVastused(ArrayList<String> valikvastusteList, ArrayList<String> vastusteList) {
 		for (int i = 0; i < vastusteList.size(); i++){
 			String[] valikvastused = valikvastusteList.get(i).split(",");
@@ -39,10 +37,6 @@ public class Vastused {
 				}
 			}
 		}
-		/* Kodeeritud vastuste listi nägemiseks
-		for (int i = 0; i < kodeeritudVastused.size(); i++)
-		    System.out.print(kodeeritudVastused.get(i)+" ");
-		*/
 		return kodeeritudVastused;
 	}
 	
@@ -61,14 +55,6 @@ public class Vastused {
 			}
 			kodeeritudVastusedListidena.add(kodeeritudVastusteAlamlist);		
 		}
-		/* Kodeeritud vastuste listi nägemiseks
-		for (int i = 0; i < kodeeritudVastusedListidena.size(); i++){
-			ArrayList<Integer> alamlist = new ArrayList<>();
-			for (int j = 0; j < kodeeritudVastusedListidena.get(i).size(); j++) {
-				alamlist = kodeeritudVastusedListidena.get(i);
-		    	System.out.print(alamlist.get(j)+" ");
-			}
-		}*/
 		return kodeeritudVastusedListidena;
 	}
 	
@@ -80,14 +66,12 @@ public class Vastused {
 		int valikuteArv = 0;
 		while ((rida = br.readLine()) != null) {
 			if (i < esimeseReaNr) {
-				//System.out.println(rida);
 				i++;
 				continue;
 			}
 			else {
 				String[] osad = rida.split(";");
 				valikuteArv = osad.length;
-				//System.out.println(valikuteArv);
 				break;
 			}
 		}
