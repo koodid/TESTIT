@@ -26,18 +26,13 @@ public class TESTIT {
 		dialoog.dialoog(kysimused.getNimekiri(), valikVastused.getNimekiri(), tutvustus.getTutvustus());
 		
 		ParimValik sobivaimOrganisatsioon = new ParimValik(dialoog.getVastused(), organisatsioonideVastused.getKodeeritudVastusedListidena());
-		//Valib ainult kõige parema tulemuse või võrdselt parimad.
-		//sobivaimOrganisatsioon.valiParim(organisatsioonid, lisainfo);
-		//sobivaimOrganisatsioon.kuvaParim("Sinu jaoks on parim valik: ", "");
-		
 		sobivaimOrganisatsioon.valiParimEdetabel(organisatsioonid, lisainfo);
 		
 		JOptionPane.showMessageDialog(null,
-				sobivaimOrganisatsioon.kuvaWrap(sobivaimOrganisatsioon.kuvaTop(3, "Sulle sobivad: ", ""), 100),
-			    "Tulemus",
-			    JOptionPane.PLAIN_MESSAGE);
+			sobivaimOrganisatsioon.kuvaWrap(sobivaimOrganisatsioon.kuvaTop(3, "Sulle sobivad: ", ""), 100),
+			"Tulemus",
+			JOptionPane.PLAIN_MESSAGE);
 		
-
 	}
 
 }
