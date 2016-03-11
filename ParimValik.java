@@ -119,14 +119,9 @@ public class ParimValik {
 	// Moodustab kuvamiseks sobiva sõne edetabeli parimatest vastavalt soovitud parimate tulemuste arvule.
 	public String kuvaTop(int parimateArv, String sobivaimaEeltekst, String lisainfoEeltekst) {
 		StringBuilder sb = new StringBuilder(2000);
-		//System.out.println(edetabeliInfo.size());
 		for (int i = 0; i < parimateArv && i < edetabeliInfo.size(); i++) {
 			sb.append(sobivaimaEeltekst + edetabeliInfo.get(i).getNimetus());
 			sb.append(" (sobivus ");
-			/*
-			System.out.println(edetabeliInfo.get(i).getPunktideHulk());
-			System.out.println(valikuvariantideVastusteList.get(i).size());
-			*/
 			sb.append(edetabeliInfo.get(i).getPunktideHulk() * 100 / valikuvariantideVastusteList.get(i).size());
 			sb.append(" %)");
 			sb.append(" _ ");
@@ -147,8 +142,6 @@ public class ParimValik {
 		for (int i = 0; i < tekstiList.length; i++) {
 			String[] tahemargid = tekstiList[i].split("");
 			sonadePikkus += tahemargid.length;
-			//System.out.println(tahemargid.length);
-			//System.out.println(sonadePikkus);
 			if (tekstiList[i].equals("_")) {
 				sb.append("\n");
 				sonadePikkus = 0;
