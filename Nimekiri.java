@@ -32,18 +32,15 @@ public class Nimekiri {
 		int i = 1;
 		while ((rida = br.readLine()) != null) {
 			if (i < esimeseReaNr) {
-				//System.out.println(rida);
 				i++;
 				continue;
 			}
 			else {
 				String[] osad = rida.split(";");
 				nimekiri.add(osad[veeruNr-1]); 
-				//System.out.println(osad[veeruNr-1]);
 			}
 		}
 		br.close();
-		//System.out.println(nimekiri);
 		return nimekiri;
 	}
 	
@@ -54,7 +51,6 @@ public class Nimekiri {
 		int i = 1;
 		while ((rida = br.readLine()) != null) {
 			if (i < reaNr) {
-				//System.out.println(rida);
 				i++;
 				continue;
 			}
@@ -62,13 +58,11 @@ public class Nimekiri {
 				String[] osad = rida.split(";");
 				for (int j = esimeseVeeruNr - 1; j < osad.length; j++){
 					nimekiri.add(osad[j]); 
-					//System.out.println(osad[j]);
 				}
 				break;
 			}
 		}
 		br.close();
-		//System.out.println(nimekiri);
 		return nimekiri;
 	}	
 }
