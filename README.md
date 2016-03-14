@@ -5,11 +5,11 @@ TESTIT on programm, mis võimaldab tabeli kujul (csv formaadis) esitatud valikva
 
 Tabelis formuleerituna on sisendiks:
 - Lühike testi või küsitluse tutvustus kasutajale kuvamiseks.
-- Küsimused või väited, mida esitatakse kasutajale. Võimalike küsimuste arv: minimaalselt 1.
+- Küsimused või väited, mida esitatakse kasutajale. Võimalike küsimuste arv: 1 - palju.
 - Küsimuste või väidete valikvastused. 
-- Tulemuste alternatiivid (nö. vastus).
+- Tulemuste alternatiivid (lõpp-tulemuseks kuvatavad testi vastused või tulemused). Võimalike tulemuste alternatiivide arv: 1 - palju.
 - Konkreetse tulemuse "õiged" vastused kõikidele küsimustele (kujuneb tulemuse "profiil").
-- Vastus(t)e kuvamisel esitatav lisainfo kõikide tulemuste alternatiivide kohta.
+- Tulemus(t)e kuvamisel esitatav lisainfo kõikide tulemuste alternatiivide kohta.
 
 Programm:
 - Kuvab testi või küsitluse tutvustuse.
@@ -18,6 +18,6 @@ Programm:
 - Võrdleb kasutaja vastuseid iga alternatiivse tulemuse "profiiliga".
 - Võrdluse põhjal kuvab kasutajale kas:
     - kõige parema või võrdselt parimad tulemused, mille puhul profiili(de) ja kasutaja vastused ühtisid kõige rohkem.
-    - eelnevalt programmis määratletud parimiku (nt. TOP 3, TOP 5 vmt) koos vastuste kattuvuse protsendiga.
+    - eelnevalt programmis määratletud paremiku (nt. TOP 3, TOP 5 vmt) koos vastuste kattuvuse protsendiga.
 
 https://github.com/koodid/TESTIT 
