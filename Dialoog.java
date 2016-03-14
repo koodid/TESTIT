@@ -10,24 +10,28 @@ public class Dialoog {
 	}
 
 	public ArrayList<Integer> dialoog(ArrayList<String> kysimused, ArrayList<String> valikud, String kysimustikuKirjeldus){
-		JOptionPane.showMessageDialog(null, 
+		int testiTutvustus = JOptionPane.showConfirmDialog(null, 
 				kysimustikuKirjeldus, 
 				"Tere tulemast!", 
-				JOptionPane.INFORMATION_MESSAGE);
-		
-		String[] eraldatud = valikud.get(0).split(",");
-		String[] valik = new String[eraldatud.length];
-		for (int i=0; i<eraldatud.length; i++){
-		valik[i] = eraldatud[i].trim();
+				JOptionPane.CLOSED_OPTION);
+		if (testiTutvustus == -1) {
+			System.exit(0);
 		}
-		for (int i=0; i < kysimused.size(); i++){
-			int sisestus = JOptionPane.showOptionDialog(null, 
-					kysimused.get(i), "Vali sobiv vastus", JOptionPane.YES_NO_OPTION,
-				    JOptionPane.QUESTION_MESSAGE, null, valik, valik[0]);
-			if (sisestus == -1){
-				System.exit(0);
+		else {
+			String[] eraldatud = valikud.get(0).split(",");
+			String[] valik = new String[eraldatud.length];
+			for (int i=0; i<eraldatud.length; i++){
+			valik[i] = eraldatud[i].trim();
 			}
-			Vastused.add(sisestus);	
+			for (int i=0; i < kysimused.size(); i++){
+				int sisestus = JOptionPane.showOptionDialog(null, 
+						kysimused.get(i), "Vali sobiv vastus", JOptionPane.YES_NO_OPTION,
+					    JOptionPane.QUESTION_MESSAGE, null, valik, valik[0]);
+				if (sisestus == -1){
+					System.exit(0);
+				}
+				Vastused.add(sisestus);
+			}
 		}
 		return Vastused;
 		}
