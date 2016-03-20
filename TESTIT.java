@@ -9,24 +9,17 @@ public class TESTIT {
 		Nimekiri valikVastused = new Nimekiri();
 		valikVastused.loeNimekiriVeerust("LeiaOmaTudengiorganisatsioon.csv", 4, 2);
 		
-		Nimekiri organisatsioonid = new Nimekiri();
-		organisatsioonid.loeNimekiriReast("LeiaOmaTudengiorganisatsioon.csv", 2, 3);
-		
-		Nimekiri lisainfo = new Nimekiri();
-		lisainfo.loeNimekiriReast("LeiaOmaTudengiorganisatsioon.csv", 3, 3);
-		
-		Vastused organisatsioonideVastused = new Vastused();
-		organisatsioonideVastused.looVastusteListVeerust("LeiaOmaTudengiorganisatsioon.csv", 4, 3);
-		organisatsioonideVastused.kodeeriVastusteList(valikVastused.getNimekiri(), organisatsioonideVastused.getVastusedListidena());
-		
-		TestiTutvustus tutvustus = new TestiTutvustus("LeiaOmaTudengiorganisatsioon.csv");
-		tutvustus.loeTutvustust();
+		Organisatsioon organisatsioonid = new Organisatsioon();
+		organisatsioonid.loeOrganisatsioonideAndmed("LeiaOmaTudengiorganisatsioon.csv");
+	
+		Lahter tutvustus = new Lahter("LeiaOmaTudengiorganisatsioon.csv");
+		tutvustus.loeLahter();
 		
 		Dialoog dialoog = new Dialoog();
 		dialoog.dialoog(kysimused.getNimekiri(), valikVastused.getNimekiri(), tutvustus.getTutvustus());
 		
-		ParimValik sobivaimOrganisatsioon = new ParimValik(dialoog.getVastused(), organisatsioonideVastused.getKodeeritudVastusedListidena());
-		sobivaimOrganisatsioon.valiParimEdetabel(organisatsioonid, lisainfo);
+		ParimValik sobivaimOrganisatsioon = new ParimValik(dialoog.getVastused(), organisatsioonid.getOrganisatsioonid());
+		sobivaimOrganisatsioon.valiParimEdetabel();
 		
 		JOptionPane.showMessageDialog(null,
 			sobivaimOrganisatsioon.kuvaWrap(sobivaimOrganisatsioon.kuvaTop(3, "Sulle sobib: ", ""), 100),

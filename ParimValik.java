@@ -3,62 +3,29 @@ import java.util.Collections;
 
 public class ParimValik {
 	private ArrayList<Integer> vastajaVastused;
-	private ArrayList<ArrayList<Integer>> valikuvariantideVastusteList;
+	private ArrayList<Organisatsioon> organisatsioonideAndmed;
 	private ArrayList<ArrayList<String>> sobivadValikud = new ArrayList<>();
-	public String sobivaimaEeltekst;
-	public String lisainfoEeltekst;
 	private ArrayList<Edetabel> edetabeliInfo = new ArrayList<>();
-	private String tulemus;
-	private String Top;
-	private String murtudTekst;
 	
-	public ArrayList<Integer> getVastajaVastused() {
-		return vastajaVastused;
-	}
-	public ArrayList<ArrayList<Integer>> getValikuteVastusteList() {
-		return valikuvariantideVastusteList;
-	}
 	public ArrayList<ArrayList<String>> getSobivadValikud() {
 		return sobivadValikud;
-	}
-	public String getSobivaimaEeltekst() {
-		return sobivaimaEeltekst;
-	}
-	public void setSobivaimaEeltekst(String sobivaimaEeltekst) {
-		this.sobivaimaEeltekst = sobivaimaEeltekst;
-	}
-	public String getLisainfoEeltekst() {
-		return lisainfoEeltekst;
-	}
-	public void setLisainfoEeltekst(String lisainfoEeltekst) {
-		this.lisainfoEeltekst = lisainfoEeltekst;
 	}
 	public ArrayList<Edetabel> getEdetabeliInfo() {
 		return edetabeliInfo;
 	}
-	public String getTulemus() {
-		return tulemus;
-	}
-	public String getTop() {
-		return Top;
-	}
-	public String getMurtudTekst() {
-		return murtudTekst;
-	}
 	
-	public ParimValik(ArrayList<Integer> vastajaVastused, ArrayList<ArrayList<Integer>> valikuteVastusteList) {
+	public ParimValik(ArrayList<Integer> vastajaVastused, ArrayList<Organisatsioon> organisatsioonideAndmed) {
 		this.vastajaVastused = vastajaVastused;
-		this.valikuvariantideVastusteList = valikuteVastusteList;
+		this.organisatsioonideAndmed = organisatsioonideAndmed;
 	}
 
 	// Valib maksimaalse tulemusega variandi või maksimaalselt võrdsete tulemustega valikuvariandid.
-	public ArrayList<ArrayList<String>> valiParim(Nimekiri variantideNimekiri, Nimekiri lisainfoNimekiri) {
-		int i_variandid;
+	public ArrayList<ArrayList<String>> valiParim() {
+		int i_organisatsioon;
 		int maxLoendur = 0;
-		
-		for (i_variandid = 0; i_variandid < valikuvariantideVastusteList.size(); i_variandid++) {
+		for (i_organisatsioon = 0; i_organisatsioon < organisatsioonideAndmed.size(); i_organisatsioon++) {
 			int loendur = 0;
-			ArrayList<Integer> vastusteKomplekt = valikuvariantideVastusteList.get(i_variandid);
+			ArrayList<Integer> vastusteKomplekt = organisatsioonideAndmed.get(i_organisatsioon).getValikVastused();
 			for (int i_kysimus = 0; i_kysimus < vastajaVastused.size(); i_kysimus++) {
 				if(vastajaVastused.get(i_kysimus).equals(vastusteKomplekt.get(i_kysimus))) {
 					loendur += 1;
@@ -66,16 +33,16 @@ public class ParimValik {
 			}
 			if ((loendur > maxLoendur) && (sobivadValikud.size() == 0) || loendur == maxLoendur) {
 				ArrayList<String> sobiv = new ArrayList<>();
-				sobiv.add(variantideNimekiri.getNimekiri().get(i_variandid));
-				sobiv.add(lisainfoNimekiri.getNimekiri().get(i_variandid));
+				sobiv.add(organisatsioonideAndmed.get(i_organisatsioon).getOrganisatsioon());
+				sobiv.add(organisatsioonideAndmed.get(i_organisatsioon).getOrgLisainfo());
 				sobivadValikud.add(sobiv);
 				maxLoendur = loendur;
 			}
 			else if ((loendur > maxLoendur) && (sobivadValikud.size() != 0)) {
 				sobivadValikud.clear();
 				ArrayList<String> sobiv = new ArrayList<>();
-				sobiv.add(variantideNimekiri.getNimekiri().get(i_variandid));
-				sobiv.add(lisainfoNimekiri.getNimekiri().get(i_variandid));
+				sobiv.add(organisatsioonideAndmed.get(i_organisatsioon).getOrganisatsioon());
+				sobiv.add(organisatsioonideAndmed.get(i_organisatsioon).getOrgLisainfo());
 				sobivadValikud.add(sobiv);
 				maxLoendur = loendur;
 			}
@@ -84,18 +51,18 @@ public class ParimValik {
 	}
 	
 	// Loob kõikide valikuvariantide lõikes vastaja tulemuste edetabeli.
-	public ArrayList<Edetabel> valiParimEdetabel(Nimekiri variantideNimekiri, Nimekiri lisainfoNimekiri) {
-		int i_variandid;
+	public ArrayList<Edetabel> valiParimEdetabel() {
+		int i_organisatsioon;
 		
-		for (i_variandid = 0; i_variandid < valikuvariantideVastusteList.size(); i_variandid++) {
+		for (i_organisatsioon = 0; i_organisatsioon < organisatsioonideAndmed.size(); i_organisatsioon++) {
 			int loendur = 0;
-			ArrayList<Integer> vastusteKomplekt = valikuvariantideVastusteList.get(i_variandid);
+			ArrayList<Integer> vastusteKomplekt = organisatsioonideAndmed.get(i_organisatsioon).getValikVastused();;
 			for (int i_kysimus = 0; i_kysimus < vastajaVastused.size(); i_kysimus++) {
 				if(vastajaVastused.get(i_kysimus).equals(vastusteKomplekt.get(i_kysimus))) {
 					loendur += 1;
 				}
 			}
-			Edetabel vastus = new Edetabel(loendur, variantideNimekiri.getNimekiri().get(i_variandid), lisainfoNimekiri.getNimekiri().get(i_variandid));
+			Edetabel vastus = new Edetabel(loendur, organisatsioonideAndmed.get(i_organisatsioon).getOrganisatsioon(), organisatsioonideAndmed.get(i_organisatsioon).getOrgLisainfo());
 			edetabeliInfo.add(vastus);
 		}
 		Collections.sort(edetabeliInfo);
@@ -122,7 +89,7 @@ public class ParimValik {
 		for (int i = 0; i < parimateArv && i < edetabeliInfo.size(); i++) {
 			sb.append(sobivaimaEeltekst + edetabeliInfo.get(i).getNimetus());
 			sb.append(" (sobivus ");
-			sb.append(edetabeliInfo.get(i).getPunktideHulk() * 100 / valikuvariantideVastusteList.get(i).size());
+			sb.append(edetabeliInfo.get(i).getPunktideHulk() * 100 / organisatsioonideAndmed.get(0).getValikVastused().size());
 			sb.append(" %)");
 			sb.append(" _ ");
 			sb.append(lisainfoEeltekst + edetabeliInfo.get(i).getLisainfo());

@@ -9,6 +9,7 @@ public class Nimekiri {
 	private ArrayList<String> nimekiri = new ArrayList<>();
 	private int reaNr;
 	private int veeruNr;
+	private ArrayList<Integer> kodeeritudVastused = new ArrayList<>();
 	
 	public String getFailinimi() {
 		return failinimi;
@@ -65,5 +66,18 @@ public class Nimekiri {
 		br.close();
 		return nimekiri;
 	}	
+	
+	public ArrayList<Integer> kodeeriVastused(ArrayList<String> valikvastusteList, ArrayList<String> vastusteList) {
+		for (int i = 0; i < vastusteList.size(); i++){
+			String[] valikvastused = valikvastusteList.get(i).split(",");
+			for (int j = 0; j < valikvastused.length; j++){
+				String vastus = valikvastused[j].trim();
+				if ((vastusteList.get(i)).equalsIgnoreCase(vastus)) {
+					kodeeritudVastused.add(j);
+				}
+			}
+		}
+		return kodeeritudVastused;
+	}
 }
 	
